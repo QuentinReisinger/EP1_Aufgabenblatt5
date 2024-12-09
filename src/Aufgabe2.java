@@ -7,7 +7,40 @@ import java.util.Arrays;
 public class Aufgabe2 {
 
     private static void reformatArray(int[][] workArray) {
-        // TODO: Implementieren Sie hier Ihre Lösung für die Methode
+        for(int i = 0; i < workArray.length; i++) {
+            int[] tempArray = new int[workArray[i].length + 1];
+            int sum = 0;
+            int indexOdd = 0;
+            int indexEven = 0;
+
+            //gerade Zehlen zählen zum bestimmen des Startindex der ungeraden
+            for(int j = 0; j < workArray[i].length; j++) {
+                if(workArray[i][j] % 2 == 0) {
+                    indexEven++;
+                }
+            }
+
+            //ungerade werte beginnen nach geraden
+            indexOdd = indexEven;
+            indexEven = 0;
+
+            for(int j = 0; j < workArray[i].length; j++) {
+                sum += workArray[i][j];
+                //wenn gerade ab index 0 einetzen
+                if(workArray[i][j] % 2 == 0) {
+                    tempArray[indexEven] = workArray[i][j];
+                    indexEven++;
+                }else{
+                    //wenn ungerade dann ab den zuvor errechneten index einsetzen
+                    tempArray[indexOdd] = workArray[i][j];
+                    indexOdd++;
+                }
+            }
+
+            //letzte Position immer summe
+            tempArray[tempArray.length - 1] = sum;
+            workArray[i] = tempArray;
+        }
     }
 
     //Vorgegebene Methode - BITTE NICHT VERÄNDERN!

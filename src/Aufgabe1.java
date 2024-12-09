@@ -7,7 +7,40 @@ import java.util.Arrays;
 public class Aufgabe1 {
 
     private static void shiftLines(int[][] workArray) {
-        // TODO: Implementieren Sie hier Ihre Lösung für die Methode
+        int shortest = workArray[0].length;
+        int shortestIndex = 0;
+        //kleinstes Array und index herausfinden
+        for(int i = 0; i < workArray.length; i++) {
+            if(workArray[i].length < shortest) {
+                shortest = workArray[i].length;
+                shortestIndex = i;
+            }
+        }
+
+        //falls alle arrays gleich lang sind
+        boolean equals = true;
+        for(int i = 0; i < workArray.length - 1; i++) {
+            if(workArray[i].length != workArray[i + 1].length) {
+                equals = false;
+                break;
+            }
+
+        }
+
+        //wenn alle arrays gleich lang sind verschieben
+        if(equals) {
+            int[] tempArray = workArray[0];
+            for(int i = 0; i < workArray.length - 1; i++) {
+                workArray[i] = workArray[i + 1];
+            }
+            workArray[workArray.length - 1] = tempArray;
+            return;
+        }
+
+        //verschieben des kürzesten arrays
+        int[] tempArray = workArray[0];
+        workArray[0] = workArray[shortestIndex];
+        workArray[shortestIndex] = tempArray;
     }
 
     //Vorgegebene Methode - BITTE NICHT VERÄNDERN!

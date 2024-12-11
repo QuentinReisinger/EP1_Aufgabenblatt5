@@ -10,13 +10,54 @@ public class Aufgabe3 {
 
         Random myRand = new Random(5); // Diese Zeile nicht verändern!
 
-        // TODO: Implementieren Sie hier Ihre Lösung für die Methode
-        return null; //Zeile kann geändert oder entfernt werden.
+        boolean[][] compound = new boolean[compoundSize][compoundSize];
+
+        for (int i = 0; i < compoundSize; i++) {
+            for (int j = 0; j < compoundSize; j++) {
+                compound[i][j] = myRand.nextFloat() <= probability;
+            }
+        }
+        return compound; //Zeile kann geändert oder entfernt werden.
     }
 
     private static int[][] calcAnimalDensity(boolean[][] animalCompound) {
-        // TODO: Implementieren Sie hier Ihre Lösung für die Methode
-        return null; //Zeile kann geändert oder entfernt werden.
+
+        int[][] density = new int[animalCompound.length][animalCompound[0].length];
+
+        for (int i = 0; i < animalCompound.length; i++) {
+            for (int j = 0; j < animalCompound[0].length; j++) {
+                int densityCount = 0;
+                if(animalCompound[i][j]){
+                    densityCount++;
+                }
+                if(i > 0 && animalCompound[i - 1][j]){
+                    densityCount++;
+                }
+                if(i < animalCompound.length - 1 && animalCompound[i + 1][j]){
+                    densityCount++;
+                }
+                if(j < animalCompound.length - 1 && animalCompound[i][j + 1]){
+                    densityCount++;
+                }
+                if(j > 0 && animalCompound[i][j - 1]){
+                    densityCount++;
+                }
+                if(j > 0 && i < animalCompound.length - 1 && animalCompound[i + 1][j - 1]){
+                    densityCount++;
+                }
+                if(i < animalCompound.length - 1 && j < animalCompound.length -  1 && animalCompound[i + 1][j + 1]){
+                    densityCount++;
+                }
+                if(i > 0 && j > 0 && animalCompound[i - 1][j - 1]){
+                    densityCount++;
+                }
+                if(j < animalCompound.length - 1 && i > 0 && animalCompound[i - 1][j + 1]){
+                    densityCount++;
+                }
+                density[i][j] = densityCount;
+            }
+        }
+        return density; //Zeile kann geändert oder entfernt werden.
     }
 
     // helping method for printing the animal compound
